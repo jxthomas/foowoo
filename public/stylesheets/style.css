@@ -1,0 +1,112 @@
+
+
+body {
+    padding: 50px 0 0 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+/* ---- menu ---- */
+
+
+a.navbar-brand{
+    margin-right:50px;
+    font-family: 'Rancho', cursive;
+    font-size: 36px;
+}
+
+button {
+    margin-left: 5px;
+}
+button#cusine {
+    margin: 18px 0 0 5px;
+}
+
+/* ---- Yelp modal window ---- */
+div.modal-dialog{
+    width: 450px;
+}
+div#modal-body-left {
+    float:left;
+}
+div#modal-body-right {
+    float:left; width: 200px;margin-left:25px;
+}
+
+div.modal-footer {
+    clear:both;
+}
+/* ---- carousel ---- */
+div#carouselCtrl {
+    height: 520px; 
+    margin: 30px auto  30px;
+}
+.carousel-control.right,.carousel-control.left {
+    background-image:none;
+    
+}
+
+div#pre-about,div#pre-map-canvas{
+    padding-top:40px;
+}
+/* ---- search ---- */
+div#boro_search {
+   margin-top:50px;
+}
+form.name_search input {
+   color:#272b30;
+}
+/* ---- about ---- */
+div#pre-about h2{
+    font-family: 'Rancho',cursive;
+}
+p#whyfoowoo {
+    margin-bottom:30px;
+}
+img.img-polaroid {
+  padding: 4px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+ul.social-profile {
+    list-style: none outside none;
+    /*margin: auto;*/
+    width:270px;
+    padding:0;
+}
+ul.social-profile li {
+    display: inline;
+}
+div.roles {
+   text-align: center; 
+   width:267px;
+ 
+}
+/* ---- map ---- */
+div#pre-map-canvas,div#pre-boro_search {
+   height:20px;
+}
+
+div#map-canvas {
+    height:450px;
+    margin: 50px auto 50px;
+}
+p#infoWindow{
+    font-weight:bold;
+    width:80px;
+    height:20px;
+    color:blue;
+}
+/* ---- footer ---- */
+div#copyright p{
+    margin: 40px 0 40px 0;
+
+}
+
+@media (min-width: 768px){
+    .navbar-nav.navbar-right:last-child {
+        margin-right: 105px;
+    }
+}

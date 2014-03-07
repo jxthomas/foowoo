@@ -1,0 +1,114 @@
+extends layout
+
+block content
+      div#pre-boro_search
+      div.row#boro_search
+          div.col-md-12
+           
+            accordion(close-others="true")
+                 accordion-group(heading="Search By Borough" is-open="false")
+                     div.panel.panel-info 
+                        div.col-md-2
+                             select.form-control( ng-change="getBoro(selectedItem.name,1)" ng-model="selectedItem" ng-options="boro as boro.name for boro in boroList")
+                        div.col-md-10
+                         div.panel-heading
+                             h3.panel-title {{selectedItem.name}} Restaurants  
+                             p.yelp Click Restaurant Name for Yelp Data
+                         div.panel-body
+                             table.table
+                                 thead 
+                                     tr
+                                         th Name
+                                         th Address
+                                         th Phone
+                                         th Grade
+                                         th Zip
+                                         th Cusine
+                                 tbody
+                                     tr(ng-repeat="boro in boro_list" ng-click="yelp(boro)")
+                                         td {{boro.dba}}
+                                         td {{boro.building}} {{boro.street}}
+                                         td {{boro.phone | phoneFormat }}
+                                         td {{boro.current_grade}}
+                                         td {{boro.zipcode}}
+                                         td {{boro.cusine_description}}
+                         div.panel-footer    
+                             p {{doc_count ? doc_count + " found in " +  selectedItem.name : ''}}  
+                         div
+                             pagination(direction-links="false" boundary-links="true" total-items="doc_count" page="currentPage" max-size=10 on-select-page="getBoro(selectedItem.name,page)") 
+                 accordion-group(heading="Search By Name")
+                     form.name_search  
+                         label(for='restaurantName')  Restaurant Name
+                         input(type="text" name="restaurantName" ng-model="restaurant.name" length=60 required )
+                         button.btn.btn-primary(ng-click="searchByName(restaurant.name,1)") Search
+                     div.panel.panel-info 
+                        
+                             
+                        div.col-md-12
+                         div.panel-heading
+                             h3.panel-title {{restaurant.name}} Restaurants 
+                             p.yelp Click Restaurant Name for Yelp Data
+                         div.panel-body
+                             table.table
+                                 thead 
+                                     tr
+                                         th Name
+                                         th Address
+                                         th Phone
+                                         th Grade
+                                         th Cusine
+                                 tbody
+                                     tr(ng-repeat="restaurant in name_restaurant_list" ng-click="yelp(restaurant)")
+                                         td {{restaurant.dba}}
+                                         td {{restaurant.building}} {{restaurant.street}}
+                                         td {{restaurant.phone | phoneFormat}}
+                                         td {{restaurant.current_grade}}
+                                         td {{restaurant.cusine_description}}
+              
+                         div.panel-footer    
+                             p {{name_doc_count ? name_doc_count + " found for " +  restaurant.name : ''}}  
+                         div
+                             pagination(direction-links="false" boundary-links="true" total-items="name_doc_count" page="currentPage" max-size=10 on-select-page="searchByName(restaurant.name,page)")    
+                     
+                     
+                 accordion-group(heading="Search By Cusine")
+                     div.panel.panel-info
+                    
+                             div.col-md-6
+                                 p Select Cusine and Borough
+                                     select.form-control(  ng-model="cusineItem" ng-options="c.name for c in cusineList" required)
+                             div.col-md-2
+                                 p &nbsp;
+                                     select.form-control(  ng-model="selectedBoro" ng-options="boro as boro.name for boro in boroList" required) 
+                             div.col-md-2
+                                 p &nbsp;
+                                     button.btn.btn-primary#cusine(ng-click="searchByCusine(cusineItem.name,selectedBoro.name,1)") Search
+                                              
+                           div.panel-heading
+                             h3.panel-title {{cusineItem.name}} in {{selectedBoro.name}} 
+                             p.yelp Click Restaurant Name for Yelp Data
+                         div.panel-body
+                             table.table
+                                 thead 
+                                     tr
+                                         th Name
+                                         th Address
+                                         th Phone
+                                         th Grade
+                                         th Cusine
+                                 tbody
+                                     tr(ng-repeat="restaurant in cusine_list" ng-click="yelp(restaurant)")
+                                         td {{restaurant.dba}}
+                                         td {{restaurant.building}} {{restaurant.street}}
+                                         td {{restaurant.phone | phoneFormat}}
+                                         td {{restaurant.current_grade}}
+                                         td {{restaurant.cusine_description}}
+              
+                         div.panel-footer    
+                             p {{cusine_doc_count ? cusine_doc_count + " found for " +  cusineItem.name + " in " + selectedBoro.name : ''}}  
+                         div
+                             pagination(direction-links="false" boundary-links="true" total-items="cusine_doc_count" page="currentPage" max-size=10 on-select-page="searchByCusine(cusineItem.name,selectedBoro.name,page)")  
+      include about.html
+      div#pre-map-canvas
+      div#map-canvas     
+      div(ng-view)

@@ -1,0 +1,11 @@
+<!-- Picture Slider Component  -->
+
+<div ng-controller="carouselCtrl" id="carouselCtrl">
+    <carousel interval="myInterval">
+      <slide ng-repeat="slide in slides" active="slide.active">
+        <img ng-src="{{slide.image}}" style="margin:auto;">
+      </slide>
+    </carousel>
+</div>
+
+

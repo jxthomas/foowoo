@@ -1,0 +1,21 @@
+<div ng-controller="RestaurantCtrl">
+
+        <div class="modal-header">
+            <img ng-src="images/reviewsFromYelpRED.gif"></img>
+            <h3>Yelp information for {{yelpData.name}}</h3>
+        </div>
+        <div class="modal-body">
+            <div id="modal-body-left">
+                <img ng-src="{{yelpData.image_url}}"/>
+                <p> Rating:<img ng-src="{{yelpData.rating_img_url}}"/></p>
+                <p> Number of reviews: {{yelpData.review_count}}</p>
+                <p>Phone:<a href="tel:{{yelpData.phone}}">{{yelpData.display_phone}}</a></p>
+            </div>
+            <div id="modal-body-right">
+                <p>{{yelpData.snippet_text}}</p>
+                <p>See it at <a href="{{yelpData.url}}" target="_blank">Yelp</a></p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+        </div>

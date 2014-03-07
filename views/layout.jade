@@ -1,0 +1,42 @@
+doctype html
+html(lang="en",ng-app="restaurantApp")
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width,initial-scale=1')
+        title= title
+        link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+        link(rel='stylesheet', href='/stylesheets/style.css') 
+        link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css')
+        link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Rancho')
+        script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js') 
+        script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.min.js")
+        script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.min.js')
+        script(src='libs/angular-bootstrap/ui-bootstrap-tpls.min.js')
+        script(src='js/app.js')
+        script(src='js/controllers.js') 
+    body(ng-controller="RestaurantCtrl")
+        nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
+            div.container-fluid
+                div.navbar-header
+                    a.navbar-brand(href='/')= title
+                    button.navbar-toggle(ng-init='navCollapsed = true',ng-click='navCollapsed=!navCollapsed')
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                div.navbar-collapse(ng-class="navCollapsed ? 'collapse' : 'not-collapse' " ng-controller="ScrollCtrl" ) 
+                    ul.nav.navbar-nav
+                        li
+                            a(ng-click="scrollControl('pre-boro_search')")  Search
+                        li
+                            a(ng-click="scrollControl('pre-about')") About
+                        li
+                            a(ng-click="scrollControl('pre-map-canvas')") Contact
+                    ul.nav.navbar-nav.navbar-right 
+                        li
+                            a NYC Restaurant Data enhanced with Yelp
+         
+        div.container-fluid
+            include carousel.html
+            block content
+            include footer.html
+        script(src='js/google_map.js')
